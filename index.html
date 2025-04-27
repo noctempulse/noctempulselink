@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noctem Pulse - Voice Actor</title>
+  <style>
+    :root {
+      --primary-color: #2e2e6e;
+      --secondary-color: #7b68ee;
+      --accent-color: #00ffcc;
+      --dark-color: #121212;
+      --text-color: #e0e0e0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--dark-color), #1a1a2e);
+      color: var(--text-color);
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, var(--accent-color) 10%, var(--primary-color) 90%);
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.4);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+    }
+
+    .linktree {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .linktree a {
+      display: block;
+      padding: 15px;
+      border: 2px solid var(--accent-color);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-size: 1.2rem;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      background: rgba(0, 255, 204, 0.05);
+    }
+
+    .linktree a:hover {
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      box-shadow: 0 0 12px var(--accent-color);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.8rem;
+      color: #555;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background"></canvas>
+  <div class="content">
+    <div class="avatar"></div>
+    <h1>Noctem Pulse - Voice Actor</h1>
+    <div class="linktree">
+      <a href="#" target="_blank" id="patreon">Patreon</a>
+      <a href="comission.html" target="_blank" id="commissions">Commissions</a>
+      <a href="#" target="_blank" id="thrones">Thrones</a>
+    </div>
+    <footer>
+      &copy; 2025 Noctem Pulse
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('patreon').href = "#";
+    document.getElementById('commissions').href = "#";
+    document.getElementById('thrones').href = "#";
+
+    const canvas = document.getElementById('background');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.5 + 0.3;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > width) this.speedX = -this.speedX;
+        if (this.y < 0 || this.y > height) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 255, 204, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    function initParticles(num) {
+      particles = [];
+      for (let i = 0; i < num; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let particle of particles) {
+        particle.update();
+        particle.draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    initParticles(80);
+    animate();
+  </script>
+</body>
+</html>

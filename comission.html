@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoctemPulse Audio Commissions</title>
+    <style>
+        :root {
+            --primary-color: #2e2e6e;
+            --secondary-color: #7b68ee;
+            --accent-color: #00ffcc;
+            --dark-color: #121212;
+            --light-color: #f5f5f5;
+            --text-color: #e0e0e0;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(46, 46, 110, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 85% 30%, rgba(0, 255, 204, 0.15) 0%, transparent 55%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.4),
+                        0 0 50px rgba(123, 104, 238, 0.2);
+            z-index: 2;
+            background: #1a1a2e;
+        }
+        
+        .profile-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent-color);
+            opacity: 0;
+            animation: pulse 3s infinite;
+        }
+        
+        .c1 {
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+        }
+        
+        .c2 {
+            width: 180px;
+            height: 180px;
+            animation-delay: 0.6s;
+        }
+        
+        .c3 {
+            width: 210px;
+            height: 210px;
+            animation-delay: 1.2s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.1);
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .waveform {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .waveform .line {
+            position: absolute;
+            background: var(--accent-color);
+            width: 2px;
+            height: 40%;
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: waveform 1s infinite ease-in-out;
+        }
+        
+        @keyframes waveform {
+            0% {
+                transform: scaleY(0.3);
+            }
+            50% {
+                transform: scaleY(1);
+            }
+            100% {
+                transform: scaleY(0.3);
+            }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 30px;
+            overflow: hidden;
+            z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .social-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .social-link:hover {
+            color: var(--dark-color);
+        }
+        
+        .social-link:hover:before {
+            width: 100%;
+        }
+        
+        .social-link svg {
+            margin-right: 0.5rem;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        section {
+            padding: 2rem;
+            background: rgba(18, 18, 18, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(123, 104, 238, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-icon {
+            margin-right: 1rem;
+            color: var(--accent-color);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .price-card {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(30, 30, 50, 0.5);
+            border: 1px solid rgba(123, 104, 238, 0.2);
+            transition: var(--transition);
+        }
+        
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 204, 0.15);
+        }
+        
+        .price-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--light-color);
+        }
+        
+        .calculator {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(30, 30, 50, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(123, 104, 238, 0.2);
+        }
+        
+        .calculator h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        label {
+            color: var(--light-color);
+        }
+        
+        select, input {
+            padding: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid rgba(123, 104, 238, 0.3);
+            background: rgba(18, 18, 18, 0.8);
+            color: var(--light-color);
+            font-size: 1rem;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(0, 255, 204, 0.3);
+        }
+        
+        .calculator-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 4px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .policies {
+            list-style-type: none;
+        }
+        
+        .policies li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .policies li svg {
+            margin-right: 0.8rem;
+            min-width: 24px;
+            color: var(--accent-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-container">
+                <div class="profile-animation">
+                    <div class="circle c1"></div>
+                    <div class="circle c2"></div>
+                    <div class="circle c3"></div>
+                    <div class="waveform">
+                        <div class="line" style="left: 40%; animation-delay: 0.1s;"></div>
+                        <div class="line" style="left: 45%; animation-delay: 0.2s;"></div>
+                        <div class="line" style="left: 50%; animation-delay: 0.3s;"></div>
+                        <div class="line" style="left: 55%; animation-delay: 0.4s;"></div>
+                        <div class="line" style="left: 60%; animation-delay: 0.5s;"></div>
+                    </div>
+                </div>
+            </div>
+            <h1>NOCTEMPULSE</h1>
+            <p class="tagline">Your Personal Voice Actor</p>
+            <div class="social-links">
+                <a href="mailto:noctempulse@gmail.com" class="social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Contact Me
+                </a>
+                <a href="https://twitter.com/NoctemPulse" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                    @NoctemPulse
+                </a>
+            </div>
+        </header>
+        
+        <main>
+            <section id="pricing">
+                <div class="section-header">
+                    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <h2>Commission Pricing</h2>
+                </div>
+                
+                <div class="pricing-cards">
+                    <div class="price-card">
+                        <h3>Standard Narration</h3>
+                        <div class="price">$8 per 100 words</div>
+                    </div>
+                    
+                    <div class="price-card">
+                        <h3>Enhanced with SFX</h3>
+                        <div class="price">$10 per 100 words</div>
+                    </div>
+                    
+                    <div class="price-card">
+                        <h3>Private Delivery (won't be shared to patreon or other social sites)</h3>
+                        <div class="price">$12 per 100 words</div>
+                    </div>
+                </div>
+                
+                <div class="calculator">
+                    <h3>Price Calculator</h3>
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="word-count">Word Count:</label>
+                            <input type="number" id="word-count" min="100" step="100" value="500">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-type">Service Type:</label>
+                            <select id="service-type">
+                                <option value="standard">Standard Narration ($8 per 100 words)</option>
+                                <option value="sfx">Enhanced with SFX ($10 per 100 words)</option>
+                                <option value="private">Private Delivery ($12 per 100 words)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="calculator-result">
+                            <span>Estimated Price:</span>
+                            <span id="calculated-price">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="policies">
+                <div class="section-header">
+                    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <h2>Commission Policies</h2>
+                </div>
+                
+                <ul class="policies">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        I reserve the right to decline any commission that is deemed unreasonable or inappropriate.
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="M7 15h0M2 9.5h20"></path>
+                        </svg>
+                        A 50% deposit is required upfront before starting the project.
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        All communications and order details will be handled via private messaging (social media or email).
+                    </li>
+                </ul>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2025 NoctemPulse Audio Services</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Price calculator functionality
+        const wordCountInput = document.getElementById('word-count');
+        const serviceTypeSelect = document.getElementById('service-type');
+        const calculatedPrice = document.getElementById('calculated-price');
+        
+        function updatePrice() {
+            const wordCount = parseInt(wordCountInput.value);
+            const serviceType = serviceTypeSelect.value;
+            
+            let ratePerHundred = 8; // default rate
+            
+            if (serviceType === 'sfx') {
+                ratePerHundred = 10;
+            } else if (serviceType === 'private') {
+                ratePerHundred = 12;
+            }
+            
+            const totalPrice = (wordCount / 100) * ratePerHundred;
+            calculatedPrice.textContent = '$' + totalPrice.toFixed(2);
+        }
+        
+        wordCountInput.addEventListener('input', updatePrice);
+        serviceTypeSelect.addEventListener('change', updatePrice);
+        
+        // Initialize animation states
+        document.addEventListener('DOMContentLoaded', function() {
+            const lines = document.querySelectorAll('.waveform .line');
+            lines.forEach((line, index) => {
+                line.style.animationDelay = (index * 0.1) + 's';
+            });
+        });
+    </script>
+</body>
+</html>
